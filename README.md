@@ -2,6 +2,10 @@
 
 Building 50 projects to improve my web development skills.
 
+| # | Project | Live Demo |
+|---|---------|-----------|
+| 001 | Music Player | https://001-music-player.netlify.app/ |
+
 ## Projects
 
 - [x] 001 Music Player
