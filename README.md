@@ -6,6 +6,13 @@ This repository contains my journey of building **50 mini projects** to improve 
 
 The goal is simple: build consistently, learn by creating, and document my progress.
 
+## 🌐 Portfolio
+
+**Live Portfolio:** https://mini-projects-wheat.vercel.app/
+
+Browse all completed projects from the landing page above.
+
+
 ## 📊 Progress
 
 **Completed:** 1 / 50
