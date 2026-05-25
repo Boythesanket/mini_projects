@@ -2,6 +2,10 @@
 
 A cozy pixel-art music player built with HTML, CSS, and JavaScript.
 
+## 🌐 Live Demo
+
+https://001-music-player.netlify.app/
+
 ## Features
 
 - Play/Pause
