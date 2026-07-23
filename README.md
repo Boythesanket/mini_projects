@@ -28,7 +28,7 @@ Browse all completed projects from the landing page above.
 | # | Project | Status | Live Demo |
 |---|---------|---------|-----------|
 | 001 | Music Player | ✅ | https://001-music-player.netlify.app/ |
-| 002 | Coming Soon | ⏳ | - |
+| 002 | Pomodoro Timer | ⏳ | - |
 | 003 | Coming Soon | ⏳ | - |
 | 004 | Coming Soon | ⏳ | - |
 | 005 | Coming Soon | ⏳ | - |
