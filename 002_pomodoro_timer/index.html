@@ -1,35 +1,49 @@
 <!doctype html>
-<html lang="en" data-theme="forest">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pomodoro Timer</title>
+    <title>Still — Focus Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
-      rel="stylesheet"
-      type="text/css"
-    />
   </head>
   <body>
-    <main class="border min-h-screen w-full">
-      <nav class="w-full border text-center p-5 lg:text-2xl font-[Bungee]">
-        <h1>Pomodoro</h1>
-      </nav>
-
-      <div class="w-full border p-2 flex justify-center">
-        <div
-          class="border-5 rounded-full lg:min-w-100 lg:min-h-100 md:min-w-100 md:min-h-100 min-w-70 min-h-70 flex items-center justify-center"
-        >
-          <h1 class="lg:text-8xl text-5xl md:text-7xl font-[Bungee]">20:00</h1>
+    <div class="stars" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+    <main class="page">
+      <section class="timer-card" aria-labelledby="timer-title">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="card-header">
+          <span class="status-dot"></span> a quiet moment for yourself
         </div>
-      </div>
+
+        <p class="session-label">Focus</p>
+        <h1 id="timer-title" class="timer">25<span>:</span>00</h1>
+        <p class="timer-note">minutes remaining</p>
+
+        <button class="start-button" type="button"><i></i> Start</button>
+
+        <nav class="mode-pills" aria-label="Timer mode">
+          <button class="active" type="button">Focus</button>
+          <button type="button" class="short" onclick="shortBreak()">Short Break</button>
+          <button type="button" class="long" onclick="longBreak()">Long Break</button>
+        </nav>
+
+        <p class="quote">Take it one gentle moment at a time.</p>
+
+        <div class="coffee" aria-hidden="true"><span></span><i></i><i></i></div>
+        <div class="plant" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><span></span>
+        </div>
+      </section>
     </main>
+
+    <script src="script.js"></script>
   </body>
 </html>

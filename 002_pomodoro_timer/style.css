@@ -1,1 +1,415 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&display=swap");
+
+:root {
+  --background: #1b1c1e;
+  --cream: #f7f4ef;
+  --muted: #a9a49d;
+  --sage: #a8c69f;
+  --orange: #d98e5f;
+  --line: rgba(247, 244, 239, 0.12);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--cream);
+  font-family: Nunito, sans-serif;
+  background: radial-gradient(
+    circle at 50% 47%,
+    #3e3934 0%,
+    #29282a 34%,
+    var(--background) 72%
+  );
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 38%,
+    rgba(0, 0, 0, 0.42) 100%
+  );
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+.page {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 100vh;
+  padding: 24px;
+  place-items: center;
+}
+.timer-card {
+  position: relative;
+  width: min(100%, 455px);
+  padding: 31px 42px 35px;
+  overflow: hidden;
+  text-align: center;
+  border: 1px solid rgba(247, 244, 239, 0.15);
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.035)
+  );
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(20px);
+}
+.timer-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.055),
+    transparent 30%
+  );
+}
+.card-glow {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  width: 290px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(217, 142, 95, 0.12);
+  filter: blur(48px);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.card-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: rgba(247, 244, 239, 0.5);
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--sage);
+  box-shadow: 0 0 9px var(--sage);
+}
+.session-label {
+  position: relative;
+  margin: 49px 0 5px;
+  color: var(--sage);
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.timer {
+  position: relative;
+  margin: 0;
+  color: var(--cream);
+  font-size: clamp(68px, 15vw, 84px);
+  font-weight: 700;
+  letter-spacing: -0.09em;
+  line-height: 0.95;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
+}
+.timer span {
+  margin: 0 4px;
+  color: var(--orange);
+  font-weight: 400;
+}
+.timer-note {
+  position: relative;
+  margin: 12px 0 35px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.start-button {
+  position: relative;
+  min-width: 170px;
+  padding: 14px 31px;
+  border: 1px solid rgba(255, 255, 255, 0.19);
+  border-radius: 999px;
+  color: #292721;
+  background: linear-gradient(135deg, #edb081, var(--orange));
+  box-shadow:
+    0 10px 22px rgba(129, 69, 43, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  font-size: 13px;
+  font-weight: 800;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+.start-button:hover {
+  box-shadow:
+    0 14px 28px rgba(129, 69, 43, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  filter: brightness(1.04);
+  transform: translateY(-2px);
+}
+.start-button:active {
+  transform: translateY(1px);
+}
+.start-button i {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 8px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid currentColor;
+}
+.mode-pills {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 30px auto 0;
+  padding: 4px;
+  width: max-content;
+  max-width: 100%;
+  border: 1px solid rgba(247, 244, 239, 0.09);
+  border-radius: 999px;
+  background: rgba(12, 13, 15, 0.18);
+}
+.mode-pills button {
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(247, 244, 239, 0.58);
+  background: transparent;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.mode-pills .active {
+  color: #29302a;
+  background: var(--sage);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.14);
+}
+.mode-pills button:not(.active):hover {
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.07);
+}
+.quote {
+  position: relative;
+  margin: 25px 0 0;
+  color: rgba(247, 244, 239, 0.43);
+  font-size: 11px;
+  font-style: italic;
+}
+.coffee {
+  position: absolute;
+  right: 29px;
+  bottom: 26px;
+  width: 28px;
+  height: 19px;
+  border: 1.5px solid rgba(244, 235, 217, 0.26);
+  border-top: 0;
+  border-radius: 0 0 11px 11px;
+  opacity: 0.85;
+}
+.coffee::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -1px;
+  width: 28px;
+  height: 8px;
+  border: 1.5px solid rgba(244, 235, 217, 0.26);
+  border-radius: 50%;
+}
+.coffee span {
+  position: absolute;
+  top: -1px;
+  left: 7px;
+  width: 13px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(217, 142, 95, 0.32);
+}
+.coffee::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: -9px;
+  width: 9px;
+  height: 10px;
+  border: 1.5px solid rgba(244, 235, 217, 0.22);
+  border-left: 0;
+  border-radius: 0 9px 9px 0;
+}
+.coffee i {
+  position: absolute;
+  top: -18px;
+  width: 5px;
+  height: 12px;
+  border-left: 1px solid rgba(247, 244, 239, 0.22);
+  border-radius: 50%;
+}
+.coffee i:nth-child(2) {
+  left: 9px;
+  transform: rotate(20deg);
+}
+.coffee i:nth-child(3) {
+  left: 17px;
+  top: -15px;
+  transform: rotate(-20deg);
+}
+.plant {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  width: 34px;
+  height: 45px;
+  opacity: 0.7;
+}
+.plant span {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  width: 18px;
+  height: 14px;
+  border: 1.5px solid rgba(217, 142, 95, 0.4);
+  border-top: 0;
+  border-radius: 0 0 10px 10px;
+}
+.plant i {
+  position: absolute;
+  bottom: 13px;
+  left: 18px;
+  width: 10px;
+  height: 22px;
+  border-radius: 100% 0 100% 0;
+  background: rgba(168, 198, 159, 0.45);
+  transform-origin: bottom left;
+}
+.plant i:nth-child(1) {
+  transform: rotate(-57deg);
+}
+.plant i:nth-child(2) {
+  transform: rotate(-20deg);
+  height: 28px;
+}
+.plant i:nth-child(3) {
+  transform: rotate(24deg);
+}
+.plant i:nth-child(4) {
+  transform: rotate(56deg);
+  height: 18px;
+}
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+.stars i {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(247, 244, 239, 0.55);
+  box-shadow: 0 0 7px rgba(247, 244, 239, 0.35);
+  animation: shimmer 4s ease-in-out infinite;
+}
+.stars i:nth-child(1) {
+  top: 15%;
+  left: 17%;
+}
+.stars i:nth-child(2) {
+  top: 27%;
+  left: 9%;
+  animation-delay: 1.2s;
+}
+.stars i:nth-child(3) {
+  top: 76%;
+  left: 15%;
+  animation-delay: 2s;
+}
+.stars i:nth-child(4) {
+  top: 17%;
+  right: 18%;
+  animation-delay: 0.7s;
+}
+.stars i:nth-child(5) {
+  top: 35%;
+  right: 9%;
+  animation-delay: 2.4s;
+}
+.stars i:nth-child(6) {
+  top: 78%;
+  right: 16%;
+  animation-delay: 1.5s;
+}
+.stars i:nth-child(7) {
+  top: 11%;
+  left: 38%;
+  animation-delay: 3s;
+}
+.stars i:nth-child(8) {
+  bottom: 12%;
+  left: 38%;
+  animation-delay: 0.4s;
+}
+.stars i:nth-child(9) {
+  bottom: 19%;
+  right: 36%;
+  animation-delay: 2.8s;
+}
+@keyframes shimmer {
+  50% {
+    opacity: 0.2;
+    transform: scale(0.55);
+  }
+}
+@media (max-width: 480px) {
+  .page {
+    padding: 18px;
+  }
+  .timer-card {
+    padding: 27px 21px 31px;
+  }
+  .session-label {
+    margin-top: 44px;
+  }
+  .mode-pills button {
+    padding: 8px 8px;
+    font-size: 9px;
+  }
+  .coffee {
+    right: 20px;
+  }
+  .plant {
+    left: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
